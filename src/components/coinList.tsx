@@ -1,16 +1,17 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { getCoins } from "../services/coinApi";
-import { Coin } from "../types";
+import { getCoinsList } from "../services/coinApi";
+import { CoinListType } from "../types";
+import Link from "next/link";
 
 const CoinList = () => {
-    const [coins, setCoins] = useState<Coin[]>([]);
+    const [coins, setCoins] = useState<CoinListType[]>([]);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
         const fetchCoins = async () => {
-            const data = await getCoins(page);
+            const data = await getCoinsList(page);
             console.log(data);
             setCoins(data);
         };
@@ -27,49 +28,51 @@ const CoinList = () => {
                 <div className="bg-white/5 backdrop-blur rounded-xl overflow-hidden border border-white/10">
 
                     <div className="grid grid-cols-6 p-4 text-gray-400 text-sm border-b border-white/10">
-                        <p>#</p>
-                        <p>Coin</p>
-                        <p>Price</p>
-                        <p>24h</p>
-                        <p>Market Cap</p>
-                        <p>Volume</p>
+                        <h1>#</h1>
+                        <h1>Coin</h1>
+                        <h1>Price</h1>
+                        <h1>24h</h1>
+                        <h1>Market Cap</h1>
+                        <h1>Volume</h1>
                     </div>
 
                     {coins.map((coin) => (
-                        <div
-                            key={coin.id}
-                            className="grid grid-cols-6 items-center p-4 border-b border-white/5 hover:bg-white/5 transition"
-                        >
-                            <p>{coin.market_cap_rank}</p>
-
-                            <div className="flex items-center gap-3">
-                                <img src={coin.image} className="w-8 h-8" />
-                                <div>
-                                    <p className="font-medium">{coin.name}</p>
-                                    <p className="text-xs text-gray-400">
-                                        {coin.symbol.toUpperCase()}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <p>$ {coin.current_price.toFixed(4)}</p>
-
-                            <p
-                                className={
-                                    coin.price_change_percentage_24h > 0
-                                        ? "text-green-400"
-                                        : "text-red-400"
-                                }
+                        <Link href={`/coin/${coin.id}`}>
+                            <div
+                                key={coin.id}
+                                className="grid grid-cols-6 items-center p-4 border-b border-white/5 hover:bg-white/5 transition"
                             >
-                                {coin.price_change_percentage_24h !== null
-                                    ? coin.price_change_percentage_24h.toFixed(2)
-                                    : "N/A"}%
-                            </p>
+                                <p>{coin.market_cap_rank}</p>
 
-                            <p>$ {(coin.market_cap / 1e12).toFixed(2)} T</p>
+                                <div className="flex items-center gap-3">
+                                    <img src={coin.image} className="w-8 h-8" />
+                                    <div>
+                                        <p className="font-medium hover:underline underline-offset-2">{coin.name}</p>
+                                        <p className="text-xs text-gray-400">
+                                            {coin.symbol.toUpperCase()}
+                                        </p>
+                                    </div>
+                                </div>
 
-                            <p>$ {(coin.total_volume / 1e9).toFixed(2)} B</p>
-                        </div>
+                                <p>$ {coin.current_price.toFixed(4)}</p>
+
+                                <p
+                                    className={
+                                        coin.price_change_percentage_24h > 0
+                                            ? "text-green-400"
+                                            : "text-red-400"
+                                    }
+                                >
+                                    {coin.price_change_percentage_24h !== null
+                                        ? coin.price_change_percentage_24h.toFixed(2)
+                                        : "N/A"}%
+                                </p>
+
+                                <p>$ {(coin.market_cap / 1e12).toFixed(2)} T</p>
+
+                                <p>$ {(coin.total_volume / 1e9).toFixed(2)} B</p>
+                            </div>
+                        </Link>
                     ))}
                 </div>
 
