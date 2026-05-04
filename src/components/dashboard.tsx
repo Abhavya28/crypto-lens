@@ -1,8 +1,10 @@
-import React from 'react'
+import CoinList from './coinList'
 
 const Dashboard = () => {
   return (
-    <div>dashboard</div>
+    <div>
+      <CoinList />
+    </div>
   )
 }
 
