@@ -8,7 +8,7 @@ export interface CoinListType {
   market_cap: number;
   total_volume: number;
   price_change_percentage_24h: number;
-};
+}
 
 export interface CoinType {
   id: string;
@@ -19,6 +19,9 @@ export interface CoinType {
     small: string;
     thumb: string;
   };
+  description:{
+    en: string;
+  }
 
   market_cap_rank: number;
 
@@ -32,6 +35,17 @@ export interface CoinType {
     total_volume: {
       usd: number;
     };
+    fully_diluted_valuation:{
+      usd: number;
+    };
+    total_supply: number;
+    max_supply: number;
+    circulating_supply: number;
+
+
+    market_cap_change_percentage_24h: number;
+    
+
     price_change_percentage_24h: number;
   };
 }

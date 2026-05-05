@@ -4,19 +4,25 @@ import { useEffect, useState } from "react";
 import { getCoinsList } from "../services/coinApi";
 import { CoinListType } from "../types";
 import Link from "next/link";
+import LoadingUI from "./common/loadingUI";
 
 const CoinList = () => {
     const [coins, setCoins] = useState<CoinListType[]>([]);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCoins = async () => {
+            setLoading(true);
             const data = await getCoinsList(page);
             console.log(data);
             setCoins(data);
+            setLoading(false);
         };
         fetchCoins();
     }, [page])
+
+    if (loading) return <LoadingUI />;
 
 
     return (
