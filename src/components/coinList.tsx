@@ -5,6 +5,7 @@ import { getCoinsList } from "../services/coinApi";
 import { CoinListType } from "../types";
 import Link from "next/link";
 import LoadingUI from "./common/loadingUI";
+import Chart from "./chart";
 
 const CoinList = () => {
     const [coins, setCoins] = useState<CoinListType[]>([]);
@@ -40,12 +41,12 @@ const CoinList = () => {
                         <h1>24h</h1>
                         <h1>Market Cap</h1>
                         <h1>Volume</h1>
+                        <h1>Last 7 Days</h1>
                     </div>
 
                     {coins.map((coin) => (
-                        <Link href={`/coin/${coin.id}`}>
+                        <Link href={`/coin/${coin.id}`} key={coin.id}>
                             <div
-                                key={coin.id}
                                 className="grid grid-cols-6 items-center p-4 border-b border-white/5 hover:bg-white/5 transition"
                             >
                                 <p>{coin.market_cap_rank}</p>

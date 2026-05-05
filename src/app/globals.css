@@ -18,3 +18,7 @@ body {
 .animate-shimmer {
   animation: shimmer 1.5s infinite;
 }
+
+.recharts-surface {
+  transition: all 0.3s ease;
+}

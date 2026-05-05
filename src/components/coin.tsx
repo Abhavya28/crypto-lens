@@ -5,6 +5,7 @@ import { CoinType } from '../types';
 import { getCoin } from '../services/coinApi';
 import LoadingUI from './common/loadingUI';
 import { Star } from 'lucide-react';
+import Chart from './chart';
 
 const Coin = ({ id }: { id: string }) => {
     const [coin, setCoin] = useState<CoinType | null>(null);
@@ -141,6 +142,10 @@ const Coin = ({ id }: { id: string }) => {
                             ? coin.description.en.replace(/<[^>]*>/g, "").slice(0, 300) + "..."
                             : "No description available."}
                     </p>
+                </div>
+
+                <div>
+                    <Chart id={id} />
                 </div>
 
             </div>
