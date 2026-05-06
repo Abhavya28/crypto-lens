@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CryptoLens",
+  title: "Crypto Lens",
   description: "Real Time Crypto Market Viewer",
 };
 
