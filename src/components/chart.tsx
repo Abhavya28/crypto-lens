@@ -5,12 +5,12 @@ import { getChart } from '../services/chartApi';
 import LoadingUI from './common/loadingUI';
 import PriceChart from './common/priceChart';
 
-const Chart = ({ id }: { id: string }) => {
+const Chart = ({ id, days }: { id: string, days: number }) => {
     const [chart, setChart] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchChart = async () => {
-            const data = await getChart(id);
+            const data = await getChart(id, days);
 
             const formatted = data.prices.map((item: any) => ({
                 date: new Date(item[0]).toLocaleString("en-US", {
@@ -27,7 +27,7 @@ const Chart = ({ id }: { id: string }) => {
         };
 
         fetchChart();
-    }, [id]);
+    }, [id, days]);
 
     if (!chart.length) return <LoadingUI />;
 

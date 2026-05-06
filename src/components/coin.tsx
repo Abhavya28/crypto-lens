@@ -4,11 +4,21 @@ import { useEffect, useState } from 'react'
 import { CoinType } from '../types';
 import { getCoin } from '../services/coinApi';
 import LoadingUI from './common/loadingUI';
-import { Star } from 'lucide-react';
 import Chart from './chart';
+import StarButton from './common/starButton';
+import RefreshButton from './common/refreshButton';
 
 const Coin = ({ id }: { id: string }) => {
     const [coin, setCoin] = useState<CoinType | null>(null);
+    const [days, setDays] = useState(7);
+
+    const TIME_RANGES = [
+        { label: "24H", value: 1 },
+        { label: "7D", value: 7 },
+        { label: "1M", value: 30 },
+        { label: "3M", value: 90 },
+        { label: "1Y", value: 365 },
+    ];
 
     useEffect(() => {
         const fetchCoin = async () => {
@@ -38,11 +48,18 @@ const Coin = ({ id }: { id: string }) => {
                         </div>
                     </div>
 
-                    <div>
-                        <Star
-                            className="text-gray-400 bg-[#535564] p-1 rounded-md hover:bg-[#6b6d7a] cursor-pointer transition"
-                            size={28}
-                        />
+                    <div className='flex gap-2 items-center'>
+                        <div className="bg-white/10 p-2 rounded-lg">
+                            <StarButton
+                                coin={{
+                                    id: coin.id,
+                                    name: coin.name,
+                                    symbol: coin.symbol,
+                                    thumb: coin.image.small,
+                                }}
+                            />
+                        </div>
+                        <RefreshButton />
                     </div>
                 </div>
 
@@ -115,21 +132,21 @@ const Coin = ({ id }: { id: string }) => {
                         <div>
                             <p className="text-gray-400">Total supply</p>
                             <p className="font-semibold">
-                               {(coin.market_data.total_supply / 1e6).toFixed(2)}M {coin.symbol.toUpperCase()}
+                                {(coin.market_data.total_supply / 1e6).toFixed(2)}M {coin.symbol.toUpperCase()}
                             </p>
                         </div>
 
                         <div>
                             <p className="text-gray-400">Max. supply</p>
                             <p className="font-semibold">
-                                {(coin.market_data.max_supply /1e6 ).toFixed(0)}M {coin.symbol.toUpperCase()}
+                                {(coin.market_data.max_supply / 1e6).toFixed(0)}M {coin.symbol.toUpperCase()}
                             </p>
                         </div>
 
                         <div>
                             <p className="text-gray-400">Circulating supply</p>
                             <p className="font-semibold">
-                                {(coin.market_data.circulating_supply / 1e6 ).toFixed(2)}M {coin.symbol.toUpperCase()}
+                                {(coin.market_data.circulating_supply / 1e6).toFixed(2)}M {coin.symbol.toUpperCase()}
                             </p>
                         </div>
                     </div>
@@ -144,10 +161,38 @@ const Coin = ({ id }: { id: string }) => {
                     </p>
                 </div>
 
-                <div>
-                    <Chart id={id} />
-                </div>
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 space-y-4">
 
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-xl font-bold text-white">
+                            Price chart
+                        </h2>
+
+                        <p className="text-xs text-gray-500">
+                            Last {days} day{days > 1 ? "s" : ""}
+                        </p>
+                    </div>
+
+                    <div className="flex gap-2 bg-white/5 p-2 rounded-xl w-full justify-between">
+                        {TIME_RANGES.map((t) => (
+                            <button
+                                key={t.value}
+                                onClick={() => setDays(t.value)}
+                                className={`px-3 py-1 rounded-lg text-xs font-medium transition ${days === t.value
+                                    ? "bg-blue-500 text-white shadow-md"
+                                    : "text-gray-300 hover:bg-white/10"
+                                    }`}
+                            >
+                                {t.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="h-[300px]">
+                        <Chart id={id} days={days} />
+                    </div>
+
+                </div>
             </div>
         </section>
     );
