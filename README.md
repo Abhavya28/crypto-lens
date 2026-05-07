@@ -1,8 +1,8 @@
-# CryptoLens 🚀
+## CryptoLens 
 
 A modern cryptocurrency tracking web app built with Next.js that lets users explore live crypto prices, market trends, charts and personalized watchlists.
 
-![CryptoLens Preview](https://crypto-lenss.vercel.app/)
+🌐 Live Demo: https://crypto-lenss.vercel.app/
 
 ---
 
@@ -27,7 +27,6 @@ A modern cryptocurrency tracking web app built with Next.js that lets users expl
 ## 🛠 Tech Stack
 
 - Next.js
-- React
 - TypeScript
 - Tailwind CSS
 - Axios
@@ -38,14 +37,8 @@ A modern cryptocurrency tracking web app built with Next.js that lets users expl
 
 ## 📸 Screenshots
 
-### Home Page
-Add your screenshot here
-
-### Coin Details
-Add your screenshot here
-
-### Watchlist
-Add your screenshot here
+### Dashboard Page
+(./screenshots/Dashboard.png)
 
 ---
 
