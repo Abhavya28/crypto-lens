@@ -38,7 +38,7 @@ A modern cryptocurrency tracking web app built with Next.js that lets users expl
 ## 📸 Screenshots
 
 ### Dashboard Page
-(./screenshots/Dashboard.png)
+![Dashboard Page](./screenshots/Dashboard.png)
 
 ---
 
