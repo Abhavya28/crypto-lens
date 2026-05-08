@@ -16,7 +16,7 @@ const NewsPage = () => {
         fetchNews();
     }, []);
 
-    if (!news) return <LoadingUI />
+    if (news.length === 0) return <LoadingUI />
     // console.log(news, "news");
 
     return (
