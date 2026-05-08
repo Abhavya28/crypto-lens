@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getNews } from "../services/newsApi";
+import LoadingUI from "./common/loadingUI";
 
 const NewsPage = () => {
     const [news, setNews] = useState<any[]>([]);
@@ -15,7 +16,8 @@ const NewsPage = () => {
         fetchNews();
     }, []);
 
-    console.log(news, "news");
+    if (!news) return <LoadingUI />
+    // console.log(news, "news");
 
     return (
         <section className="py-10 px-6">
