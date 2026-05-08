@@ -12,15 +12,11 @@ A modern cryptocurrency tracking web app built with Next.js that lets users expl
 - 🔍 Smart coin search with suggestions
 - ⭐ Add / Remove coins from watchlist
 - 📊 Interactive price charts
-- ⏱ Multiple chart time ranges
-  - 24H
-  - 7D
-  - 1M
-  - 3M
-  - 1Y
+- ⏱ Multiple chart time ranges - 24H, 7D, 1M, 3M, 1Y
 - 📱 Fully responsive UI
 - ⚡ Fast and optimized with Next.js
 - 🔄 Refresh market data instantly
+- 📰 Latest Crytpo News
 
 ---
 
