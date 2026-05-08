@@ -8,7 +8,7 @@ import axios from "axios";
 const navLinks = [
   { title: "Dashboard", href: "/" },
   { title: "Watchlist", href: "/watchlist" },
-  { title: "Blogs", href: "/blogs"},
+  { title: "News", href: "/news"},
 ];
 
 const Navbar = () => {
